@@ -8,6 +8,7 @@
 ```bash
 # Clone this repo and:
 uv sync
+echo 'IMAGE_PREFIX="my-sglang-service"' >> .env
 ```
 
 ## Usage
