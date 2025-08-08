@@ -1,0 +1,53 @@
+version: "3"
+
+dotenv:
+  - .env
+
+vars:
+  BASE_DOCKER_IMAGE: "{{.IMAGE_PREFIX}}/sglang:base-cu128"
+  DOCKER_IMAGE: "{{.IMAGE_PREFIX}}/mineru-sglang:latest"
+  QWEN3_DOCKER_IMAGE: "{{.IMAGE_PREFIX}}/qwen3-sglang:latest"
+  DOCKER_RUN: docker run -it --gpus all --shm-size 32g --ipc=host -p 30000:30000 -p 7860:7860 -p 8000:8000
+
+tasks:
+  docker-sglang-base:
+    cmds:
+      - >
+        docker buildx build --target base -t {{.BASE_DOCKER_IMAGE}} .
+
+  docker-mineru:
+    cmds:
+      - docker buildx build -t {{.DOCKER_IMAGE}} .
+
+  docker-qwen3:
+    cmds:
+      - docker buildx build -t {{.QWEN3_DOCKER_IMAGE}} .
+
+  run:
+    cmds:
+      - >
+        {{.DOCKER_RUN}} {{.DOCKER_IMAGE}} /bin/bash
+
+  run-base:
+    cmds:
+      - "{{.DOCKER_RUN}} {{.BASE_DOCKER_IMAGE}} /bin/bash"
+
+  run-qwen3:
+    cmds:
+      - >
+        {{.DOCKER_RUN}}
+        {{.QWEN3_DOCKER_IMAGE}}
+        python3 -m sglang.launch_server
+        --model-path "Qwen/Qwen3-0.6B"
+        --host 0.0.0.0
+        --port 30000
+
+  test-qwen3:
+    cmds:
+      - uv run test.py
+
+  gradio:
+    cmds:
+      - >
+        {{.DOCKER_RUN}} {{.DOCKER_IMAGE}}
+        mineru-gradio --server-name 0.0.0.0 --server-port 7860 --enable-sglang-engine true
