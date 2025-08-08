@@ -4,6 +4,8 @@
 
 ```bash
 docker pull docker.io/fuis/sglang:base-cu128
+docker pull docker.io/fuis/mineru-sglang:latest
+docker pull docker.io/fuis/qwen3-sglang:latest
 ```
 
 ## Prepare

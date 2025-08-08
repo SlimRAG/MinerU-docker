@@ -10,6 +10,12 @@ vars:
   DOCKER_RUN: docker run -it --gpus all --shm-size 32g --ipc=host -p 30000:30000 -p 7860:7860 -p 8000:8000
 
 tasks:
+  docker:
+    cmds:
+      - task: docker-sglang-base
+      - task: docker-mineru
+      - task: docker-qwen3
+
   docker-sglang-base:
     cmds:
       - >
