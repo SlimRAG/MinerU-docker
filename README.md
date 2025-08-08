@@ -1,5 +1,11 @@
 # MinerU images for Blackwell
 
+## Prebuilt image
+
+```bash
+docker pull docker.io/fuis/sglang:base-cu128
+```
+
 ## Prepare
 
 - Install [task](https://taskfile.dev)
