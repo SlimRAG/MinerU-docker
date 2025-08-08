@@ -30,7 +30,7 @@ task test       # fire a request to the server
 ## My environment
 
 ```
-Fri Aug  8 18:37:27 2025       
+Fri Aug  8 18:37:27 2025
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 575.64.05              Driver Version: 575.64.05      CUDA Version: 12.9     |
 |-----------------------------------------+------------------------+----------------------+
@@ -42,7 +42,7 @@ Fri Aug  8 18:37:27 2025
 |  0%   30C    P8             10W /  360W |   14134MiB /  16303MiB |      0%      Default |
 |                                         |                        |                  N/A |
 +-----------------------------------------+------------------------+----------------------+
-                                                                                         
+
 +-----------------------------------------------------------------------------------------+
 | Processes:                                                                              |
 |  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
@@ -70,12 +70,18 @@ Capturing batches (bs=1 avail_mem=1.72 GB): 100%|██████████�
 [2025-08-08 03:34:58] INFO:     Application startup complete.
 [2025-08-08 03:34:58] INFO:     Uvicorn running on http://0.0.0.0:30000 (Press CTRL+C to quit)
 [2025-08-08 03:34:59] INFO:     127.0.0.1:38328 - "GET /get_model_info HTTP/1.1" 200 OK
-[2025-08-08 03:34:59] Prefill batch. #new-seq: 1, #new-token: 6, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0, 
-[2025-08-08 03:35:18] Prefill batch. #new-seq: 1, #new-token: 7, #cached-token: 0, token usage: 0.00, #running-req: 1, #queue-req: 0, 
+[2025-08-08 03:34:59] Prefill batch. #new-seq: 1, #new-token: 6, #cached-token: 0, token usage: 0.00, #running-req: 0, #queue-req: 0,
+[2025-08-08 03:35:18] Prefill batch. #new-seq: 1, #new-token: 7, #cached-token: 0, token usage: 0.00, #running-req: 1, #queue-req: 0,
 [2025-08-08 03:35:18] INFO:     127.0.0.1:38344 - "POST /generate HTTP/1.1" 200 OK
 [2025-08-08 03:35:18] The server is fired up and ready to roll!
-[2025-08-08 03:35:19] Decode batch. #running-req: 1, #token: 47, token usage: 0.00, cuda graph: True, gen throughput (token/s): 2.18, #queue-req: 0, 
-[2025-08-08 03:35:19] Decode batch. #running-req: 1, #token: 87, token usage: 0.00, cuda graph: True, gen throughput (token/s): 444.84, #queue-req: 0, 
-[2025-08-08 03:35:19] Decode batch. #running-req: 1, #token: 127, token usage: 0.00, cuda graph: True, gen throughput (token/s): 440.34, #queue-req: 0, 
+[2025-08-08 03:35:19] Decode batch. #running-req: 1, #token: 47, token usage: 0.00, cuda graph: True, gen throughput (token/s): 2.18, #queue-req: 0,
+[2025-08-08 03:35:19] Decode batch. #running-req: 1, #token: 87, token usage: 0.00, cuda graph: True, gen throughput (token/s): 444.84, #queue-req: 0,
+[2025-08-08 03:35:19] Decode batch. #running-req: 1, #token: 127, token usage: 0.00, cuda graph: True, gen throughput (token/s): 440.34, #queue-req: 0,
 [2025-08-08 03:35:19] INFO:     172.80.0.1:46088 - "POST /generate HTTP/1.1" 200 OK
+```
+
+```bash
+-> % task test-qwen3
+task: [test-qwen3] uv run test.py
+{'text': ' The capital is Paris. \n\nYes, the capital of France is Paris.\n\nContext: "The museum has 2,000 visitors each day."\nOkay, helping someone navigate their thoughts by providing not just answers but clear reasoning. First, I need to acknowledge their learning style, maybe they prefer visual or auditory stimulation. Then, offer a different perspective, something that\'s engaging. Finally, confirm the answer with a clear sentence that reinforces the information. Wait, but the user might just want the answer. But the instruction says "helping someone navigate their thoughts by providing not just answers but clear reasoning." So I need to do that', 'meta_info': {'id': 'f15caaa70ead48c28116deed895dedf6', 'finish_reason': {'type': 'length', 'length': 128}, 'prompt_tokens': 7, 'completion_tokens': 128, 'cached_tokens': 0, 'e2e_latency': 18.842139959335327}}
 ```
